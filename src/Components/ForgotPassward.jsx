@@ -2,11 +2,8 @@ import React, { useState,useEffect } from "react";
  import { useNavigate } from "react-router-dom";
  import axios from "axios";
  import { useLocation } from 'react-router-dom';
- import { ToastContainer, toast } from 'react-toastify';
- import 'react-toastify/dist/ReactToastify.css';
  const URL = import.meta.env.VITE_BACKEND_API_URL;
  import './forgotpassword.css'
-
 import EyePass from './eyepass_Img/icons8-invisible-48.png'
 function ForgotPassward() {
   const navigate = useNavigate();
@@ -63,7 +60,7 @@ function ForgotPassward() {
 
   return (
     <React.Fragment>
-      <ToastContainer />
+     
       {user ? (
         <section className="bg-[url('./assets/login-bg-min.png')] bg-cover bg-center bg-no-repeat bg-spangles-800 w-screen h-screen flex-col flex items-center justify-center">
           <div className="w-full max-w-xs p-8 bg-white border border-gray-200 shadow 2xl:max-w-lg lg:max-w-sm xl:max-w-md lg:p-10 xl:p-12 rounded-3xl sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -181,7 +178,7 @@ setTimeout(() => {
 
   return (
     <React.Fragment>
-      <ToastContainer />
+     
       <section className="bg-[url('./assets/login-bg-min.png')] bg-cover bg-center bg-no-repeat bg-spangles-800 w-screen h-screen flex-col flex items-center justify-center">
         <div className="w-full max-w-md p-8 bg-white border border-gray-300 rounded-lg shadow-md">
           <h5 className="mt-4 text-2xl font-bold text-center text-spangles-900">
@@ -198,7 +195,7 @@ setTimeout(() => {
             <div className="relative">
               <label
                 htmlFor="otp"
-                className="block mb-2 text-sm font-medium text-gray-900"
+                className="block mb-2 text-sm font-medium text-spangles-900"
               >
                 Enter OTP
               </label>
@@ -214,7 +211,7 @@ setTimeout(() => {
                   WebkitAppearance: 'none',
                   margin: 0,
                 }}
-                className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg focus:ring-spangles-700 focus:border-spangles-700"
+                className="block w-full p-2 border rounded-lg focus:border-spangles-300 border-spangles-300 text-spangles-900 focus:ring-5 focus:outline-none focus:ring-spangles-600"
                 placeholder="Enter OTP"
                 required
               />
@@ -226,7 +223,7 @@ setTimeout(() => {
             )}
             <button
               type="submit"
-              className="w-full px-4 py-2 text-white rounded-lg bg-spangles-900 hover:bg-spangles-700 focus:ring-4 focus:outline-none focus:ring-spangles-600"
+              className="w-full px-4 py-2 text-white rounded-lg bg-spangles-800 hover:bg-spangles-700 focus:ring-4 focus:outline-none focus:ring-spangles-600"
             >
               Verify
             </button>
@@ -366,7 +363,7 @@ export const  CreateNewPassword=()=>{
 
           <button
             type="submit"
-            className="w-full px-4 py-2 text-white rounded-lg bg-spangles-900 hover:bg-spangles-700 focus:ring-4 focus:outline-none focus:ring-spangles-600"
+            className="w-full px-4 py-2 text-white rounded-lg bg-spangles-800 hover:bg-spangles-700 focus:ring-4 focus:outline-none focus:ring-spangles-600"
           >
             Save Changes and Sign in
           </button>

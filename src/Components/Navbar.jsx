@@ -1,6 +1,6 @@
 import { initFlowbite } from "flowbite";
 import React, { useEffect } from "react";
-import logo from "../assets/pp 1.png";
+import logo from "../assets/DGF-Logo-Name-min.png";
 import acc from "../assets/user (1).png";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -17,7 +17,7 @@ function Navbar() {
   }, []);
   return (
     <React.Fragment>
-      <nav className="fixed top-0 z-50 w-full flex flex-col justify-center h-20 bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+      <nav className="fixed top-0 z-50 flex flex-col justify-center w-full h-20 bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div className="px-3 py-3 lg:px-5 lg:pl-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start rtl:justify-end">
@@ -46,13 +46,13 @@ function Navbar() {
               <Link to="/admin/job-post/list" className="flex">
                 <img
                   src={logo}
-                  className="h-5 w-20 sm:h-6 sm:w-20 md:h-8 md:w-24 lg:h-9 lg:w-36 xl:h-10 xl:w-40 2xl:h-12 2xl:w-48"
+                  className="w-16 h-7 sm:h-8 sm:w-18 md:h-9 md:w-20 lg:h-10 lg:w-24 xl:h-12 xl:w-36 2xl:h-14 2xl:w-40"
                   alt="Logo"
                 />
               </Link>
             </div>
             <div className="flex items-center space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-7">
-              <div className="border h-7 sm:h-8 md:h-9 border-gray-400"></div>
+              <div className="border border-gray-400 h-7 sm:h-8 md:h-9"></div>
               <div className="flex items-center space-x-2 sm:space-x-4 md:space-x-5">
                 <button
                   type="button"
@@ -66,7 +66,7 @@ function Navbar() {
                   />
                 </button>
                 <div>
-                  <span className="block text-xs sm:text-sm md:text-base font-medium text-gray-900 dark:text-white">
+                  <span className="block text-xs font-medium text-gray-900 sm:text-sm md:text-base dark:text-white">
                     {user && user.name}
                   </span>
                   <span className="block text-[10px] sm:text-xs md:text-sm text-gray-500 truncate dark:text-gray-400">
