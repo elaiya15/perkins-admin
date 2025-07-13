@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 .ql-container {
-  height: 600px;
+  height: 500px;
   border-radius: 0 0 10px 10px;
 }
 .ql-editor {
-  height: 600px;
+  height: 500px;
 }
