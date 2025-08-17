@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { URL } from "../App";
 import axios from "axios";
 import  './login.css'
+
+
+
 function Login() {
   const navigate = useNavigate();
   const [PasswordVisible, setPasswordVisible] = useState(false);
   const [Response, setResponse] = useState(false);
   const [ResponseMessage, setResponseMessage] = useState("");
   const [ResponseColor, setResponseColor] = useState("");
+
+
+
+
+
   const handelForgotPassword=()=>{
     navigate("/ForgotPassward")   
         
@@ -62,6 +70,7 @@ function Login() {
   };
   return (
     <React.Fragment>
+         
       <section className="bg-[url('./assets/login-bg-min.png')] bg-cover bg-center bg-no-repeat bg-spangles-800 w-screen h-screen flex-col flex items-center justify-center">
         <div className="relative w-full max-w-xs p-8 bg-white border border-gray-200 shadow  2xl:max-w-lg lg:max-w-sm xl:max-w-md lg:p-10 xl:p-12 rounded-3xl sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
           <form

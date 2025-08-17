@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Login from "./Pages/Login";
 import ContainerWrapper from "./Pages/Container";
@@ -28,18 +28,59 @@ import ForgotPassward from './Components/ForgotPassward'
 import {OTPVerification,CreateNewPassword} from './Components/ForgotPassward'
 
 export const URL = import.meta.env.VITE_BACKEND_API_URL;
+
+// ✅ Custom toast component
+const Toast = ({ message }) => (
+  <div className="fixed top-5 right-5 z-50 w-[300px] max-w-xs p-4 text-white bg-red-600 rounded-md shadow-md animate-fade-in-down">
+  {message}
+  </div>
+);
+const ConnectedToast = ({ message }) => (
+  <div className="fixed top-5 right-5 z-50 w-[300px] max-w-xs p-4 text-white bg-blue-600 rounded-md shadow-md animate-fade-in-down">
+  {message}
+  </div>
+);
+
 function App() {
   const isUser = JSON.parse(window.localStorage.getItem("user"));
+ const [errorMsg, setErrorMsg] = useState("");
+ const [ConnectedMsg, setConnectedMsg] = useState("");
 
   useEffect(() => {
     if (isUser === null) {
       <Navigate to={"/"} />;
     }
   }, []);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${URL}`);
+        console.log(response.data);
+        if (response.data==='Server is Live.' || response.data==='Server is running') {
+          setConnectedMsg("✅ Back end Handshake connected successfully");
+          
+        }
+       
+      } catch (err) {
+        setErrorMsg(" Back end Handshake failed");
+      } finally {
+        setTimeout(() => {
+          setConnectedMsg("");
+          setErrorMsg("");
+        }, 3000);
+      }
+    };
+
+    fetchData();
+  }, []);
+
 
   return (
     <React.Fragment>
       <BrowserRouter>
+      {errorMsg && <Toast message={errorMsg} />}
+          {ConnectedMsg && <ConnectedToast message={ConnectedMsg} />}
         <Routes>
           <Route path="*" element={<Navigate to={`/`} />} />
           <Route path="/" element={<Login />} />
