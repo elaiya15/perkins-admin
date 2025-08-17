@@ -26,6 +26,7 @@ import EnquiriesList from "./Pages/Enquiries/List";
 import EnquiriesPreview from "./Pages/Enquiries/Preview";
 import ForgotPassward from './Components/ForgotPassward'
 import {OTPVerification,CreateNewPassword} from './Components/ForgotPassward'
+import axios from "axios";
 
 export const URL = import.meta.env.VITE_BACKEND_API_URL;
 
