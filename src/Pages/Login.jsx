@@ -21,6 +21,56 @@ function Login() {
     navigate("/ForgotPassward")   
         
       }
+
+ const handleDemo = async (event) => {
+    event.preventDefault();
+    alert("The backend is hosted on Render.com (free tier), so it may take up to 60 seconds to wake up. Please wait patiently while we log you in.");
+    const data = {
+      username: "Admin123",
+      password: "Admin@123",
+    };
+    try {
+      const response = await axios.post(`${URL}/api/user/login`, data);
+      const user = response.data.user;
+      window.localStorage.setItem("user", JSON.stringify(user));
+      window.localStorage.setItem("token", response.data.token);
+      setResponse(true);
+      setResponseMessage(response.data.message);
+      setResponseColor("text-green-600");
+      if (user.isAdmin) {
+        setTimeout(() => {
+          navigate("/admin/job-post/list");
+        }, 1000);
+      } else {
+        const access =
+          user.access_to[0] === "Job Post"
+            ? "job-post"
+            : user.access_to[0] === "Blogs"
+            ? "blogs"
+            : user.access_to[0] === "Gallery"
+            ? "gallery"
+            : user.access_to[0] === "Applicants"
+            ? "applicants"
+            : user.access_to[0] === "Enquiries & Messages"
+            ? "enquiries&messages"
+            : " ";
+        setTimeout(() => {
+          navigate(`/admin/${access}/list`);
+        }, 2000);
+      }
+    } catch (error) {
+      console.error(error);
+      setResponse(true);
+      setResponseColor("text-red-600");
+      setResponseMessage(
+        error.response ? error.response.data.message : error.message
+      );
+      setTimeout(() => {
+        setResponse(false);
+      }, 5000);
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
@@ -72,7 +122,7 @@ function Login() {
     <React.Fragment>
          
       <section className="bg-[url('./assets/login-bg-min.png')] bg-cover bg-center bg-no-repeat bg-spangles-800 w-screen h-screen flex-col flex items-center justify-center">
-        <div className="relative w-full max-w-xs p-8 bg-white border border-gray-200 shadow  2xl:max-w-lg lg:max-w-sm xl:max-w-md lg:p-10 xl:p-12 rounded-3xl sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+        <div className="relative w-full max-w-xs p-8 bg-white border border-gray-200 shadow 2xl:max-w-lg lg:max-w-sm xl:max-w-md lg:p-10 xl:p-12 rounded-3xl sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
           <form
             className="relative space-y-6 lg:space-y-8 xl:space-y-10 2xl:space-y-12"
             onSubmit={handleSubmit}
@@ -126,7 +176,7 @@ function Login() {
                 )}
               </div>
             </div>
-            <span className="absolute flex items-start justify-end w-full  forgetpassword"><span onClick={()=>handelForgotPassword()} className=" hover:cursor-pointerblock text-[10px]  hover:underline hover:cursor-pointer hover:text-blue-600 sm:text-xs md:text-sm text-gray-500 truncate dark:text-gray-400">Forgot Password</span></span>
+            <span className="absolute flex items-start justify-end w-full forgetpassword"><span onClick={()=>handelForgotPassword()} className=" hover:cursor-pointerblock text-[10px]  hover:underline hover:cursor-pointer hover:text-blue-600 sm:text-xs md:text-sm text-gray-500 truncate dark:text-gray-400">Forgot Password</span></span>
             <div className="my-5 text-center">
               {Response && (
                 <p className={`${ResponseColor} font-semibold text-sm`}>
@@ -140,7 +190,16 @@ function Login() {
             >
               Login
             </button>
+           
           </form>
+         &nbsp;
+           <button
+             onClick={handleDemo}
+
+              className="w-full text-white  bg-spangles-700 hover:bg-spangles-800 focus:ring-4 focus:outline-none focus:ring-spangles-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-spangles-600 dark:hover:bg-spangles-700 dark:focus:ring-spangles-800"
+            >
+              View Demo
+            </button>
         </div>
       </section>
     </React.Fragment>

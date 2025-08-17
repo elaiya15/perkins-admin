@@ -74,9 +74,9 @@ function List() {
   };
   return (
     <React.Fragment>
-      <div className="flex flex-col w-full p-5 space-y-10 bg-white rounded-t-lg">
-        <div className="fixed flex items-center w-[70%] justify-between  gap-5 bg-white">
-          <div className="inline-flex w-[60%] items-center h-auto space-x-5">
+            <div className="flex flex-col w-full p-5 space-y-10 bg-white rounded-t-lg">
+        <div className="fixed flex flex-wrap top-20 h-[80px] items-center justify-between w-[70%]  bg-white gap-5">
+          <div className="inline-flex items-center space-x-3">
             <h1 className="text-lg font-semibold text-spangles-700">
               Jobs List
             </h1>

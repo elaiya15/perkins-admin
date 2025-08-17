@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import jobPost from "../assets/Group 263.png";
 import blogs from "../assets/Group 265.png";
 import gallery from "../assets/Group 1000001926.png";
@@ -12,8 +12,8 @@ import { initFlowbite } from "flowbite";
 function Sidebar() {
   const user = JSON.parse(window.localStorage.getItem("user"));
   const navigate = useNavigate();
-  const location = useLocation();  // Get the current route
-
+  const location = useLocation();
+  
   useEffect(() => {
     if (user === null) {
       navigate("/");
@@ -24,9 +24,9 @@ function Sidebar() {
     initFlowbite();
   }, []);
 
-  // Function to check if a link is active
-  const isActive = (path) => location.pathname === path;
- const handelLogOut= () => {
+  // Helper function to determine if the path is active
+  const isActive = (path) => location.pathname === path ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-white' : '';
+  const handelLogOut= () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     navigate("/");
@@ -44,15 +44,11 @@ function Sidebar() {
               <li>
                 <Link
                   to="/admin/job-post/list"
-                  className={`flex items-center p-2 rounded-lg group ${
-                    isActive("/admin/job-post/list")
-                      ? "bg-gray-200 dark:bg-gray-700"
-                      : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-                  }`}
+                  className={`flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${isActive('/admin/job-post/list')}`}
                 >
                   <img
                     src={jobPost}
-                    className="flex-shrink-0 w-7 h-7"
+                    className="flex-shrink-0 transition duration-75 w-7 h-7 group-hover:text-gray-900 dark:group-hover:text-white"
                     alt="Job Post icon"
                   />
                   <span className="flex-1 ms-3 whitespace-nowrap">Job Post</span>
@@ -63,15 +59,11 @@ function Sidebar() {
               <li>
                 <Link
                   to="/admin/blogs/list"
-                  className={`flex items-center p-2 rounded-lg group ${
-                    isActive("/admin/blogs/list")
-                      ? "bg-gray-200 dark:bg-gray-700"
-                      : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-                  }`}
+                  className={`flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${isActive('/admin/blogs/list')}`}
                 >
                   <img
                     src={blogs}
-                    className="flex-shrink-0 w-7 h-7"
+                    className="flex-shrink-0 transition duration-75 w-7 h-7 group-hover:text-gray-900 dark:group-hover:text-white"
                     alt="Blogs icon"
                   />
                   <span className="flex-1 ms-3 whitespace-nowrap">Blogs</span>
@@ -82,15 +74,11 @@ function Sidebar() {
               <li>
                 <Link
                   to="/admin/gallery/list"
-                  className={`flex items-center p-2 rounded-lg group ${
-                    isActive("/admin/gallery/list")
-                      ? "bg-gray-200 dark:bg-gray-700"
-                      : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-                  }`}
+                  className={`flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${isActive('/admin/gallery/list')}`}
                 >
                   <img
                     src={gallery}
-                    className="flex-shrink-0 w-7 h-7"
+                    className="flex-shrink-0 transition duration-75 w-7 h-7 group-hover:text-gray-900 dark:group-hover:text-white"
                     alt="Gallery icon"
                   />
                   <span className="flex-1 ms-3 whitespace-nowrap">Gallery</span>
@@ -101,20 +89,14 @@ function Sidebar() {
               <li>
                 <Link
                   to="/admin/user-access/list"
-                  className={`flex items-center p-2 rounded-lg group ${
-                    isActive("/admin/user-access/list")
-                      ? "bg-gray-200 dark:bg-gray-700"
-                      : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-                  }`}
+                  className={`flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${isActive('/admin/user-access/list')}`}
                 >
                   <img
                     src={userAccess}
-                    className="flex-shrink-0 w-7 h-7"
+                    className="flex-shrink-0 transition duration-75 w-7 h-7 group-hover:text-gray-900 dark:group-hover:text-white"
                     alt="User Access icon"
                   />
-                  <span className="flex-1 ms-3 whitespace-nowrap">
-                    User Access
-                  </span>
+                  <span className="flex-1 ms-3 whitespace-nowrap">User Access</span>
                 </Link>
               </li>
             )}
@@ -123,20 +105,14 @@ function Sidebar() {
                 <li>
                   <Link
                     to="/admin/applicant/list"
-                    className={`flex items-center p-2 rounded-lg group ${
-                      isActive("/admin/applicant/list")
-                        ? "bg-gray-200 dark:bg-gray-700"
-                        : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-                    }`}
+                    className={`flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${isActive('/admin/applicant/list')}`}
                   >
                     <img
                       src={ApplicantsIcon}
-                      className="flex-shrink-0 w-7 h-7"
+                      className="flex-shrink-0 transition duration-75 w-7 h-7 group-hover:text-gray-900 dark:group-hover:text-white"
                       alt="Applicants icon"
                     />
-                    <span className="flex-1 ms-3 whitespace-nowrap">
-                      Applicants
-                    </span>
+                    <span className="flex-1 ms-3 whitespace-nowrap">Applicants</span>
                   </Link>
                 </li>
               )}
@@ -146,20 +122,14 @@ function Sidebar() {
                 <li>
                   <Link
                     to="/admin/enquiries&messages/list"
-                    className={`flex items-center p-2 rounded-lg group ${
-                      isActive("/admin/enquiries&messages/list")
-                        ? "bg-gray-200 dark:bg-gray-700"
-                        : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-                    }`}
+                    className={`flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${isActive('/admin/enquiries&messages/list')}`}
                   >
                     <img
                       src={EnquiriesIcon}
-                      className="flex-shrink-0 w-7 h-7"
+                      className="flex-shrink-0 transition duration-75 w-7 h-7 group-hover:text-gray-900 dark:group-hover:text-white"
                       alt="Enquiries & Messages icon"
                     />
-                    <span className="flex-1 ms-3 whitespace-nowrap">
-                      Enquiries
-                    </span>
+                    <span className="flex-1 ms-3 whitespace-nowrap">Enquiries & Messages</span>
                   </Link>
                 </li>
               )}
@@ -176,10 +146,10 @@ function Sidebar() {
                 className="flex-shrink-0 transition duration-75 w-7 h-7 group-hover:text-gray-900 dark:group-hover:text-white"
                 alt="Log Out icon"
               />
-              <span   className="flex-1 ms-3 whitespace-nowrap">Log Out</span>
+               {/* <span  onClick={handelLogOut} className="flex-1 ms-3 whitespace-nowrap">Log Out</span> */}
+               <span  className="flex-1 ms-3 whitespace-nowrap">Log Out</span>
             </button>
-         
-        </div>
+          </div>
         </div>
       </aside>
       <div
@@ -240,7 +210,10 @@ function Sidebar() {
                 Cancel
               </button>
               <button
-                onClick={handelLogOut}
+                onClick={() => {
+                  window.localStorage.clear();
+                  navigate("/");
+                }}
                 data-modal-hide="logout-modal"
                 type="button"
                 className="text-white ms-5 bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"

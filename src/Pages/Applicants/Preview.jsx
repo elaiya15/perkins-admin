@@ -151,6 +151,7 @@ if (Data && Data.status==="View") {
 const handleStatus = async (e) => {
   e.preventDefault();
   const dataToUpdate = { status:ReasonForStatus.status, ReasonForStatus };
+// return console.log(dataToUpdate);
 
   try {
     const response = await axios.put(`${URL}/api/applicant/${params.id}/applicant_status/update`, dataToUpdate, {
